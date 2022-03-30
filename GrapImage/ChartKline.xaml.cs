@@ -151,7 +151,7 @@ public partial class ChartKline : UserControl
             if (IsWaitFillBakdailes)
             {
                 //"the bakdailes has filled!"
-                //数据加载完成后发出通知，触发后台事件，以提供其他窗体调用该数据集合，防止出现空调用异常                
+                //数据加载完成后发出通知，触发后台事件，以提供其他窗体调用该数据集合，防止出现空调用异常123                
                 //syncContext.Post((object e) => FillBakDailesed?.Invoke(this, (EventArgs)e), new EventArgs());
                 syncContext.Post((object e) => FillBakDailesed?.Invoke(this, null), null);
             }
