@@ -32,7 +32,7 @@ public partial class ChartKline : UserControl
         _ =  GetMergBakdailyAsync();
     }
     /// <summary>
-    /// K线变化、刷新
+    /// K线变化、刷新123
     /// </summary>
     /// <param name="args"></param>
     #region
