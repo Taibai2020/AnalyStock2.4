@@ -14,7 +14,7 @@ public partial class ChartKline : UserControl
     public bool IsWaitFillBakdailes = false;
     public event EventHandler FillBakDailesed;
     //创建异步上下文环境
-    readonly SynchronizationContext syncContext;//创建异步上下文环境123
+    readonly SynchronizationContext syncContext;//创建异步上下文环境
     string queryStartDate = DateTime.Today.AddMonths(-6).ToString("yyyyMMdd"); //默认显示半年内的数据
     string queryEndDate = DateTime.Today.ToString("yyyyMMdd");
     readonly DateTime firstDayIn10Years = DateTime.Today.AddYears(-10);
