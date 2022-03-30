@@ -1,0 +1,52 @@
+﻿<Page x:Class="AnalyStock.WpfForm.SelectStockPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:my="clr-namespace:AnalyStock.GrapImage"
+      mc:Ignorable="d"
+        d:DesignHeight="450" d:DesignWidth="800"
+        Title="策略选股" SizeChanged="Page_SizeChanged" Background="#FF0A2837"  >
+    <GroupBox Header="策略选股" Foreground="#FFFBFEFF">
+        <Grid >
+            <Grid.RowDefinitions>               
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="260"/>
+            </Grid.RowDefinitions>            
+            <Border Grid.Row="0" Style="{StaticResource BorderStyle}">
+             <my:ChartKline Grid.Row="0"  x:Name="ChartKline" Margin="2,2,2,2"/>               
+            </Border>
+            <Grid Grid.Row="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="35"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="270"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Grid.Row="0"  Style="{StaticResource BorderStyle}">
+                    <ListBox  x:Name="LstSele"   Background="#FFF7C9B7"  BorderBrush="#FF375CCA"   />
+                </Border>
+                <Border Grid.Column="0" Grid.Row="1" Style="{StaticResource BorderStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="BtnExcuteSelect" Content="执 行" Height="21" Width="40" Margin="2,0,0,0" Style="{StaticResource ButtonWarmStyle}"  Click="BtnSelect_Click" />
+                    <Label x:Name="LbProgress"   Height="21" Width="175" FontSize="9" Style="{StaticResource LableStyle}" Margin="2,0,0,0"/>
+                    <Button x:Name="BtnStopAction" Content="中 止" Height="21" Width="40" Margin="2,0,0,0" Style="{StaticResource ButtonWarmStyle}" Click="BtnStopBgWork_Click" IsEnabled="False" />
+                   </StackPanel>
+                </Border>
+                <Border Grid.Column="1"  Grid.Row="0"  Style="{StaticResource BorderStyle}">
+                    <DataGrid  x:Name="DViewSeleStock"  Style="{StaticResource DataGridWarmStyle}" SelectionChanged="SeleStock_SelectionChanged" GridLinesVisibility="None"   SelectionMode="Extended" SelectionUnit="FullRow"  IsReadOnly="False"/>
+                </Border>
+                <Border  Grid.Column="1"  Grid.Row="1" Style="{StaticResource BorderStyle}">
+                    <StackPanel  Orientation="Horizontal">
+                        <Button x:Name="BtnAddSeleStock" Content="加自选" Height="21" Width="60" Margin="15,0,0,0" Style="{StaticResource ButtonStyle}" Click="BtnAddSeleStock_Click"/>
+                        <Button x:Name="BtnDelCurStock" Content="删除记录" Height="21" Width="60" Margin="15,0,0,0" Style="{StaticResource ButtonStyle}" Click="BtnDelCurStock_Click" />
+                        <Button x:Name="BtnExportSeleData" Content="导出选择" Height="21" Width="60" Margin="15,0,0,0" Style="{StaticResource ButtonStyle}" Click="BtnExportData_Click" />
+                        <Button x:Name="BtnExportAllData" Content="导出全部" Height="21" Width="60" Margin="15,0,0,0" Style="{StaticResource ButtonStyle}" Click="BtnExportData_Click" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </GroupBox>
+</Page>

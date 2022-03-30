@@ -1,0 +1,17 @@
+﻿<Page x:Class="AnalyStock.WpfForm.TitlePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"      
+      mc:Ignorable="d"
+      d:DesignHeight="550" d:DesignWidth="800"
+      Title="系统封面" >
+    <GroupBox Foreground="#FFFBFEFF"  Header="AboutSystem">
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/WpfForm/AnalyStockBackImg.jpg" Stretch="None"/>
+            </Grid.Background>
+            <TextBlock Text="Ver2.4  WriterBy@Taibai 2020.11-2022.03"  Foreground="#FFC2BEBE" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,-50,-200"  />
+        </Grid>
+    </GroupBox>
+</Page>
