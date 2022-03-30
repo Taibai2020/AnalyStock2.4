@@ -16,7 +16,7 @@ public class CustomProgress : ICustomProgress
     //public delegate void ProgressChangedEventHandler(ProgChangedEventArgs e);
     //public event ProgressChangedEventHandler ProgressChanged;
     public event EventHandler<MultitaskChangedEventArgs> ProgressChanged;
-    private readonly SynchronizationContext _synchronizationContext;
+    private readonly SynchronizationContext _syncContext;
     private readonly SendOrPostCallback _invokeHandlers;
     public bool IsCancellation
     {
@@ -30,7 +30,7 @@ public class CustomProgress : ICustomProgress
     }
     public CustomProgress()
     {
-        _synchronizationContext = SynchronizationContext.Current ?? new SynchronizationContext();
+        _syncContext = SynchronizationContext.Current ?? new SynchronizationContext();
         _invokeHandlers = InvokeHandlers;
         IsCancellation = false;
         IsBusy = false;
@@ -38,7 +38,7 @@ public class CustomProgress : ICustomProgress
     protected virtual void OnChanged(MultitaskChangedEventArgs e)
     {
         //_synchronizationContext.Post((e)=>ProgressChanged(this, (MultitaskChangedEventArgs)e), e);
-        _synchronizationContext.Post(_invokeHandlers, e);
+        _syncContext.Post(_invokeHandlers, e);
     }
     void ICustomProgress.Report(string taskNo, int progressPercentage, string userState)
     {

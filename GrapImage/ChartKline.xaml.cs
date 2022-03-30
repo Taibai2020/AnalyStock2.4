@@ -29,7 +29,7 @@ public partial class ChartKline : UserControl
     {
         InitializeComponent();
         syncContext = SynchronizationContext.Current ?? new SynchronizationContext();
-        _ = GetMergBakdailyAsync();
+        _ =  GetMergBakdailyAsync();
     }
     /// <summary>
     /// K线变化、刷新
@@ -60,10 +60,10 @@ public partial class ChartKline : UserControl
     private async Task PaintF10PanelAsync()
     {
         DisplayPanel.Children.Clear();
-        FillStockBakInfor(); //显示股票面板属性数据
+        FillBakInfors(); //显示股票面板属性数据
         await FillFinancialIndex(); //显示主要财务指标数据
     }
-    private void FillStockBakInfor()
+    private void FillBakInfors()
     {
         if (mergeBakDailes?.Count is null) { return; }
         var currbakinfor = mergeBakDailes.First(n => n.Ts_code == StockCode);
@@ -150,8 +150,10 @@ public partial class ChartKline : UserControl
             mergeBakDailes = await GetDataOnDbSetAsync<MergeBakDaily>();
             if (IsWaitFillBakdailes)
             {
-                //数据加载完成后发出通知，触发后台事件，以提供其他窗体调用该数据集合，防止出现空调用异常
-                syncContext.Post((object e) => FillBakDailesed?.Invoke(this, (EventArgs)e), null);
+                //"the bakdailes has filled!"
+                //数据加载完成后发出通知，触发后台事件，以提供其他窗体调用该数据集合，防止出现空调用异常                
+                //syncContext.Post((object e) => FillBakDailesed?.Invoke(this, (EventArgs)e), new EventArgs());
+                syncContext.Post((object e) => FillBakDailesed?.Invoke(this, null), null);
             }
         });
     }
@@ -161,7 +163,7 @@ public partial class ChartKline : UserControl
              ? await GetDataOnlineAsync<Infodaily>(StockCode, queryStartDate, queryEndDate)
              : await GetDataOnDbSetAsync<Infodaily>(StockCode, queryStartDate, queryEndDate);
         return CheckBCurrentInline.IsChecked.Value
-            ? await infodailies.AddCurrentDataOnlineAsync()
+            ? await infodailies.AddCurrentInforOnlineAsync()
             : infodailies;
     }
     private async Task<IList<FinancialIndex>> GetFinancialIndexAsync()

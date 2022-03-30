@@ -48,7 +48,7 @@
     /// 增加在线交易日及时数据 (网易数据接口)
     internal static class InfordailyExtend
     {
-        internal static async Task<IList<Infodaily>> AddCurrentDataOnlineAsync(this IList<Infodaily> list)
+        internal static async Task<IList<Infodaily>> AddCurrentInforOnlineAsync(this IList<Infodaily> list)
         {
             var currentInfors =
                 await CommDataMethod.GetDataOnlineAsync<CurrentInforOfQutoes>(list?.First().Ts_code);
